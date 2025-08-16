@@ -6,5 +6,7 @@
 @source '../**/*.js';
 
 @theme {
-    --color-black: #060606
+    --color-black: #060606;
+    --font-hanken-grotesk: "Hanken Grotesk", "sans-serif";
+    --text-2xs: 0.625rem; /* 10px */
 }
