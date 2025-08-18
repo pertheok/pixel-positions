@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Jobs;
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class JobsPolicy
+class JobPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class JobsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Jobs $jobs): bool
+    public function view(User $user, Job $job): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class JobsPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Jobs $jobs): bool
+    public function update(User $user, Job $job): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class JobsPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Jobs $jobs): bool
+    public function delete(User $user, Job $job): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class JobsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Jobs $jobs): bool
+    public function restore(User $user, Job $job): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class JobsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Jobs $jobs): bool
+    public function forceDelete(User $user, Job $job): bool
     {
         //
     }
