@@ -1,5 +1,6 @@
 <div>
-    <form wire:submit="changeName()">
+    <form wire:submit="changeGreeting()">
+
         <div class="mt-2">
             <x-forms.select name="greeting" label="Greeting" wire:model.fill="greeting" class="mb-4">
                 <option value="Hello" class="text-black">Hello</option>
@@ -15,9 +16,9 @@
         </div>
     </form>
 
-    @if ($name != '')
+    @if ($greetingMessage != '')
         <div class="text-4xl mt-4">
-            {{ $greeting }}, {{ $name }}!
+            {{ $greetingMessage }}
         </div>
     @endif
 </div>
