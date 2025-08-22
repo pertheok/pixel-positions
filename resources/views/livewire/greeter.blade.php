@@ -21,3 +21,9 @@
         </div>
     @endif
 </div>
+
+
+{{-- <input wire:model.live="name" /> updated with every keystroke --}} 
+{{-- <input wire:model.debounce.1000="name" udpates after .VALUE had passed after the last keystroke /> --}}
+{{-- <input wire:model.change="name" /> updated after field loses focus and has been updated --}} 
+{{-- <input wire:model.blur="name" /> updated after field loses focus --}} 

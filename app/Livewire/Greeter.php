@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Greeting;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 

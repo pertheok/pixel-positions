@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Article;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +21,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(JobSeeder::class);
-        $this->call(GreetingSeeder::class);
+        // $this->call(JobSeeder::class);
+        // $this->call(GreetingSeeder::class);
+        Article::factory(50)->create();
     }
 }
