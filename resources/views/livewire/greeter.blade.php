@@ -3,10 +3,9 @@
 
         <div class="mt-2">
             <x-forms.select name="greeting" label="Greeting" wire:model.fill="greeting" class="mb-4">
-                <option value="Hello" class="text-black">Hello</option>
-                <option value="Hi" class="text-black">Hi</option>
-                <option value="Hey" class="text-black">Hey</option>
-                <option value="Howdy" class="text-black" selected>Howdy</option>
+                @foreach ($greetings as $greeting)
+                    <option class="text-black" value="{{ $greeting->greeting }}">{{ $greeting->greeting }}</option>                    
+                @endforeach
             </x-forms.select>
             <x-forms.input name="name" label="New Name" wire:model="name" />
         </div>
