@@ -7,11 +7,11 @@ use Livewire\Component;
 
 class ShowArticle extends Component
 {
-    public $article;
+    public Article $article;
 
-    public function mount($id) 
+    public function mount(Article $article) 
     {
-        $this->article = Article::findOrFail($id);
+        $this->article = $article;
     }
 
     public function render()
