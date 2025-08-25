@@ -11,7 +11,7 @@ class SearchResults extends Component
     public $results = [];
 
     #[Reactive]
-    public $show;
+    public $show = false;
 
     public function render()
     {

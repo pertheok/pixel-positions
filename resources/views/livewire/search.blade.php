@@ -5,7 +5,6 @@
             <div class="flex-1">
                 <x-forms.input name="searchText" label="" wire:model.live.debounce="searchText" placeholder="{{ $placeholder }}" />
             </div>
-            <x-forms.button wire:click.prevent="clear()" class="ml-2 mt-2 mb-2 disabled:bg-blue-400" :disabled="empty($searchText)">Clear</x-forms.button>
         </div>
 
     </form>
