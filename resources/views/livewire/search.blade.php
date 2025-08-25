@@ -1,24 +1,16 @@
 <div>
     <form>
 
-        <div class="mt-2 flex justify-between">
+        <div class="mt-2 mb-4 flex justify-between">
             <div class="flex-1">
-                <x-forms.input name="searchText" label="" wire:model.live.debounce="searchText" placeholder="Type something to search..." />
+                <x-forms.input name="searchText" label="" wire:model.live.debounce="searchText" placeholder="{{ $placeholder }}" />
             </div>
             <x-forms.button wire:click.prevent="clear()" class="ml-2 mt-2 mb-2 disabled:bg-blue-400" :disabled="empty($searchText)">Clear</x-forms.button>
         </div>
 
     </form>
 
-    <div class="mt-4">
-
-        @foreach ($results as $result)
-            <div class="pt-2">
-                <a href="/lw/articles/{{ $result->id }}">{{ $result->title }}</a>
-            </div>              
-        @endforeach
-
-    </div>
+    <livewire:search-results :results="$results" :show="!empty($searchText)" />
 </div>
 
 
