@@ -6,6 +6,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
 use App\Livewire\ArticleIndex;
+use App\Livewire\ArticleList;
+use App\Livewire\Dashboard;
 use App\Livewire\ShowArticle;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +43,6 @@ Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('aut
 Route::prefix('/lw')->group(function () {
     Route::get('/', ArticleIndex::class);
     Route::get('/articles/{article}', ShowArticle::class)->name('lw.articles.show');
+    Route::get('/dashboard', Dashboard::class);
+    Route::get('/dashboard/articles', ArticleList::class);
 });
