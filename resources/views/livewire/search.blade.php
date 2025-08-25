@@ -8,8 +8,16 @@
         </div>
 
     </form>
-
-    <livewire:search-results :results="$results" :show="!empty($searchText)" />
+    @if (!empty($results) && count($results) > 0)
+        <div
+            x-data
+            @click.away="$dispatch('search:clear-results')"
+        >
+            <livewire:search-results :results="$results" :show="!empty($searchText)" />
+        </div>
+    @else
+        <livewire:search-results :results="$results" :show="!empty($searchText)" />
+    @endif
 </div>
 
 
