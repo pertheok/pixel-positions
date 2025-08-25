@@ -1,25 +1,23 @@
-<x-layout>
-    <div>
-        <form>
+<div>
+    <form>
 
-            <div class="mt-2">
-                <x-forms.input name="searchText" label="Search" wire:model.live.debounce="searchText" placeholder="Type something to search..." />
-                <x-forms.button wire:click.prevent="clear()" class="mt-4 disabled:bg-blue-400" :disabled="empty($searchText)">Clear</x-forms.button>
-            </div>
-
-        </form>
-
-        <div class="mt-4">
-
-            @foreach ($results as $result)
-                <div class="pt-2">
-                    <a href="/articles/{{ $result->id }}">{{ $result->title }}</a>
-                </div>              
-            @endforeach
-
+        <div class="mt-2">
+            <x-forms.input name="searchText" label="Search" wire:model.live.debounce="searchText" placeholder="Type something to search..." />
+            <x-forms.button wire:click.prevent="clear()" class="mt-4 disabled:bg-blue-400" :disabled="empty($searchText)">Clear</x-forms.button>
         </div>
+
+    </form>
+
+    <div class="mt-4">
+
+        @foreach ($results as $result)
+            <div class="pt-2">
+                <a href="/articles/{{ $result->id }}">{{ $result->title }}</a>
+            </div>              
+        @endforeach
+
     </div>
-</x-layout>
+</div>
 
 
 {{-- <input wire:model.live="name" /> updated with every keystroke --}} 
