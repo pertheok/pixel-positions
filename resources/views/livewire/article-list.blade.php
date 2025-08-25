@@ -13,11 +13,11 @@
                     <td class="px-6 py-3">
                         <button 
                             wire:click="delete({{ $article->id }})" 
+                            wire:confirm="Are you sure you want to delete this article?"
                             class="text-gray-200 p-2 bg-red-700 hover:bg-red-900 rounded-sm"
                         >
                             Delete
                         </button>
-                        <button wire:click="edit({{ $article->id }})" class="text-blue-500">Edit</button>
                     </td>
                 </tr>
             @endforeach
