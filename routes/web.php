@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\JobController;
-use App\Http\Controllers\LWController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
-use App\Livewire\Search;
+use App\Livewire\ArticleIndex;
 use App\Livewire\ShowArticle;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +39,6 @@ Route::middleware('guest')->group(function () {
 Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 Route::prefix('/lw')->group(function () {
-    Route::get('/', [LWController::class, 'index']);
-    Route::get('/articles/{article}', ShowArticle::class);
+    Route::get('/', ArticleIndex::class);
+    Route::get('/articles/{article}', ShowArticle::class)->name('lw.articles.show');
 });

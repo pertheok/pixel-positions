@@ -5,8 +5,8 @@
         @endif
 
         @foreach ($results as $result)
-            <div class="pt-2">
-                <a wire:navigate.hover href="/lw/articles/{{ $result->id }}">{{ $result->title }}</a>
+            <div class="pt-2" wire:key="{{ $result->id }}">
+                <a wire:navigate.hover href="{{ route('lw.articles.show', $result) }}">{{ $result->title }}</a>
             </div>              
         @endforeach
 
