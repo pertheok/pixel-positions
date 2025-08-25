@@ -41,6 +41,5 @@ Route::delete('/logout', [SessionController::class, 'destroy'])->middleware('aut
 
 Route::prefix('/lw')->group(function () {
     Route::get('/', [LWController::class, 'index']);
-    Route::get('/search', Search::class);
     Route::get('/articles/{article}', ShowArticle::class);
 });

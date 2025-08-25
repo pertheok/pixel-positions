@@ -1,9 +1,11 @@
 <div>
     <form>
 
-        <div class="mt-2">
-            <x-forms.input name="searchText" label="Search" wire:model.live.debounce="searchText" placeholder="Type something to search..." />
-            <x-forms.button wire:click.prevent="clear()" class="mt-4 disabled:bg-blue-400" :disabled="empty($searchText)">Clear</x-forms.button>
+        <div class="mt-2 flex justify-between">
+            <div class="flex-1">
+                <x-forms.input name="searchText" label="" wire:model.live.debounce="searchText" placeholder="Type something to search..." />
+            </div>
+            <x-forms.button wire:click.prevent="clear()" class="ml-2 mt-2 mb-2 disabled:bg-blue-400" :disabled="empty($searchText)">Clear</x-forms.button>
         </div>
 
     </form>
