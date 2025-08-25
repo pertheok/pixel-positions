@@ -52,5 +52,8 @@
                 {{ $slot }}
             </main>
         </div>
+        <script data-navigate-once>
+            console.log('page loaded');
+        </script>
     </body>
 </html>

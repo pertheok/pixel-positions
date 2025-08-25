@@ -6,7 +6,7 @@
 
         @foreach ($results as $result)
             <div class="pt-2">
-                <a href="/lw/articles/{{ $result->id }}">{{ $result->title }}</a>
+                <a wire:navigate.hover href="/lw/articles/{{ $result->id }}">{{ $result->title }}</a>
             </div>              
         @endforeach
 
