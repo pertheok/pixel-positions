@@ -16,6 +16,9 @@ class ArticleForm extends Form
 
     public ?Article $article;
 
+    public $published = false;
+    public $notification = 'none';
+
     public function setArticle(Article $article)
     {
         $this->article = $article;
