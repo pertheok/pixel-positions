@@ -24,7 +24,7 @@
             <span class="font-bold" wire:dirty.class="text-amber-600" wire:target="form.notifications">Allow Notifications?<span wire:dirty wire:target="form.notifications">*</span></span>
             <div class="mb-2 flex items-center space-x-10">
                 <x-forms.input class="space-x-2" type="radio" label="Yes" name="yes" value="true" wire:model.boolean="form.allowNotifications" />
-                <x-forms.input class="space-x-2" type="radio" label="No" name="no" value="false" wire:model.boolean="form.allowNotifications" />
+                <x-forms.input class="space-x-2" type="radio" label="No" name="no" wire:click="form.notifications = []" value="false" wire:model.boolean="form.allowNotifications" />
             </div>
         </div>
        
