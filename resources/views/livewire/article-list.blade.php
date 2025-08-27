@@ -23,14 +23,14 @@
                         <a 
                             href="/lw/dashboard/articles/{{ $article->id }}/edit"
                             wire:navigate
-                            class="text-gray-200 p-2 rounded-sm"
+                            class="text-gray-200 p-2 rounded-sm bg-indigo-700 hover:bg-indigo-900"
                         >
                             Edit
                         </a>
                         <button 
                             wire:click="delete({{ $article->id }})" 
                             wire:confirm="Are you sure you want to delete this article?"
-                            class="text-gray-200 p-2 bg-red-700 hover:bg-red-900 rounded-sm"
+                            class="text-gray-200 ml-2 p-2 bg-red-700 hover:bg-red-900 rounded-sm"
                         >
                             Delete
                         </button>
