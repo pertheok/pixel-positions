@@ -26,7 +26,7 @@
         </div>
        
 
-        <div class="mb-2 flex items-center justify-between" x-show="$wire.form.allowNotifications">
+        <div class="mb-2 flex items-center space-x-10" x-show="$wire.form.allowNotifications">
             <x-forms.input type="checkbox" label="Email" name="email" value="email" wire:model="form.notifications" />
             <x-forms.input type="checkbox" label="SMS" name="sms" value="sms" wire:model="form.notifications" />
             <x-forms.input type="checkbox" label="Push" name="push" value="push" wire:model="form.notifications" />
