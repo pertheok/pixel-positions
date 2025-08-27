@@ -29,7 +29,7 @@
         </div>
 
         <div class="mb-3">
-            <x-forms.button class="text-gray-200 p-2 hover:bg-indigo-900 rounded-sm" type="submit">Save</x-forms.button>
+            <x-forms.button wire:dirty.remove.attr="disabled" wire:dirty.class="hover:bg-indigo-900" disabled class="text-gray-200 p-2 rounded-sm disabled:opacity-75 disabled:bg-blue-300" type="submit">Save</x-forms.button>
         </div>
     </x-forms.form>
 </div>
