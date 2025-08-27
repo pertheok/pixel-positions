@@ -13,13 +13,25 @@
             </x-forms.field>
         </div>
 
-        <div class="mb-3 flex items-center justify-between">
+        <div class="mb-3 ">
             <x-forms.input type="checkbox" label="Published" name="published" wire:model.boolean="form.published" checked />
-            <x-forms.input type="radio" label="Email" name="email" wire:model.boolean="published" value="email" wire:model="form.notification" />
-            <x-forms.input type="radio" label="SMS" name="sms" wire:model.boolean="published" value="sms" wire:model="form.notification" />
-            <x-forms.input type="radio" label="None" name="none" wire:model.boolean="published" value="none" wire:model="form.notification" />
         </div>
-        
+
+        <div>
+            <span class="font-bold">Allow Notifications:</span>
+            <div class="mb-2 flex items-center space-x-10">
+                <x-forms.input class="space-x-2" type="radio" label="Yes" name="yes" value="true" wire:model.boolean="form.allowNotifications" />
+                <x-forms.input class="space-x-2" type="radio" label="No" name="no" value="false" wire:model.boolean="form.allowNotifications" />
+            </div>
+        </div>
+       
+
+        <div class="mb-2 flex items-center justify-between" x-show="$wire.form.allowNotifications">
+            <x-forms.input type="checkbox" label="Email" name="email" value="email" wire:model="form.notifications" />
+            <x-forms.input type="checkbox" label="SMS" name="sms" value="sms" wire:model="form.notifications" />
+            <x-forms.input type="checkbox" label="Push" name="push" value="push" wire:model="form.notifications" />
+        </div>
+
         <div class="mb-3">
             <x-forms.button class="text-gray-200 p-2 hover:bg-indigo-900 rounded-sm" type="submit">Save</x-forms.button>
         </div>
