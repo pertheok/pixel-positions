@@ -7,6 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
 use App\Livewire\ArticleIndex;
 use App\Livewire\ArticleList;
+use App\Livewire\CreateArticle;
 use App\Livewire\Dashboard;
 use App\Livewire\ShowArticle;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +46,5 @@ Route::prefix('/lw')->group(function () {
     Route::get('/articles/{article}', ShowArticle::class)->name('lw.articles.show');
     Route::get('/dashboard', Dashboard::class);
     Route::get('/dashboard/articles', ArticleList::class);
+    Route::get('/dashboard/articles/create', CreateArticle::class);
 });
