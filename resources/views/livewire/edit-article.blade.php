@@ -2,12 +2,12 @@
     <x-forms.form wire:submit="save">
         <h3 class="text-lg text-gray-200 mb-3">Edit Article</h3>
         <div class="mb-3">
-            <x-forms.input label="Title" name="title" wire:model="title" />
+            <x-forms.input label="Title" name="title" wire:model="form.title" />
         </div>
 
         <div class="mb-3">
             <x-forms.field label="Content" name="content">
-                <textarea id="content" class="p-2 w-full border rounded-xl bg-white/10 border-white/10 text-white" wire:model="content">
+                <textarea id="content" class="p-2 w-full border rounded-xl bg-white/10 border-white/10 text-white" wire:model="form.content">
 
                 </textarea>
             </x-forms.field>
