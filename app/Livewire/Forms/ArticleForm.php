@@ -39,6 +39,6 @@ class ArticleForm extends Form
     {
         $this->validate();
 
-        $this->article->update($this->only(['title', 'content']));
+        $this->article->update($this->only(['title', 'content', 'published', 'notification']));
     }
 }
