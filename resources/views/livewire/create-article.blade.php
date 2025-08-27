@@ -12,6 +12,11 @@
                 </textarea>
             </x-forms.field>
         </div>
+
+        <div class="mb-3">
+            <x-forms.input type="checkbox" label="Published" name="published" wire:model="published" checked />
+        </div>
+
         <div class="mb-3">
             <x-forms.button class="text-gray-200 p-2 hover:bg-indigo-900 rounded-sm" type="submit">Save</x-forms.button>
         </div>
