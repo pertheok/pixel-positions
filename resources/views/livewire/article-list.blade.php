@@ -20,6 +20,13 @@
                 <tr wire:key="{{ $article->id }}" class="border-b bg-gray-800 border-gray-700">
                     <td class="px-6 py-3">{{ $article->title }}</td>
                     <td class="px-6 py-3">
+                        <a 
+                            href="/lw/dashboard/articles/{{ $article->id }}/edit"
+                            wire:navigate
+                            class="text-gray-200 p-2 rounded-sm"
+                        >
+                            Edit
+                        </a>
                         <button 
                             wire:click="delete({{ $article->id }})" 
                             wire:confirm="Are you sure you want to delete this article?"
