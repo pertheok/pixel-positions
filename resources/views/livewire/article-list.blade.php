@@ -2,13 +2,31 @@
     <div class="mb-3 flex justify-between items-center">
         <a 
             href="/lw/dashboard/articles/create" 
-            class="text-gray-200 p-2 bg-indigo-700 hover:bg-indigo-900 rounded-sm"
+            class="text-blue-500 hover:text-blue-700"
             wire:navigate
         >
             Create Article
         </a>
-        <livewire:published-count /> {{-- add lazy property to lazily load --}}
+
+        <div>
+            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-900 rounded-sm"
+                wire:click="showAll()"
+            >
+                Show all
+            </button>
+
+            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-900 rounded-sm"
+                wire:click="showPublished()"
+            >
+                Show published (<livewire:published-count placeholder-text="Loading..." />) {{-- add lazy property to lazily load --}}
+            </button>
+        </div>
     </div>
+
+    <div class="my-3">
+        {{ $articles->links(data: ['scrollTo' => 'table.w-full']) }} {{-- set to false to disable scrolling when changing pages --}}
+    </div>
+
     <table class="w-full">
         <thead class="text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
