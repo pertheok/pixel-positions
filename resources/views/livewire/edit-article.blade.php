@@ -1,6 +1,6 @@
 <div class="m-auto mb-4">
     <x-forms.form wire:submit="save">
-        <h3 class="text-lg text-gray-200 mb-3">Edit Article</h3>
+        <h3 class="text-lg text-gray-200 mb-3">Edit Article (ID: {{ $form->id }})</h3>
         <div class="mb-3">
             <span wire:dirty wire:target="form.title" class="text-amber-600">Below field was changed.</span>
             <x-forms.input label="Title" name="title" wire:model="form.title" />

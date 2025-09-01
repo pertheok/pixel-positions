@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\ArticleForm;
-use Livewire\Attributes\Validate;
 
 class CreateArticle extends AdminComponent
 {
@@ -12,6 +11,9 @@ class CreateArticle extends AdminComponent
     public function save()
     {
         $this->form->store();
+
+        // $this->redirectIntended('/lw/dashboard'); 
+        // This is used to redirect the user to a page that he might not have had an access to when originally attempted to get there (ex. unauthenticated) and redirects them after logging in 
 
         $this->redirectRoute('dashboard.articles.index', navigate: true);
         // $this->redirect('/lw/dashboard/articles', navigate: true); 
