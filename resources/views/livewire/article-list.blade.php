@@ -33,6 +33,11 @@
         </div>
     </div>
 
+    @if (session('status'))
+        <div class="text-center bg-green-700 text-gray-200">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="my-3">
         {{ $this->articles->links(data: ['scrollTo' => 'table.w-full']) }} {{-- set to false to disable scrolling when changing pages, this scrolls to a selected element --}}
     </div>

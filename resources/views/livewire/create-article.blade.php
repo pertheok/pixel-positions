@@ -13,6 +13,10 @@
             </x-forms.field>
         </div>
 
+        <div class="mb-3 ">
+            <x-forms.input type="checkbox" label="Published" name="published" wire:model.boolean="form.published" checked />
+        </div>
+
         <div>
             <span class="font-bold">Allow Notifications:</span>
             <div class="mb-2 flex items-center space-x-10">

@@ -13,7 +13,9 @@ class CreateArticle extends AdminComponent
     {
         $this->form->store();
 
-        $this->redirect('/lw/dashboard/articles', navigate: true);
+        $this->redirectRoute('dashboard.articles.index', navigate: true);
+        // $this->redirect('/lw/dashboard/articles', navigate: true); 
+        // navigate: true makes it so instead of a full page reload, only content is reloaded (so not layouts, scripts, assets, etc)
     }
 
     public function render()
