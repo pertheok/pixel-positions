@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\WithPagination;
 
@@ -12,10 +13,31 @@ class ArticleList extends AdminComponent
     use WithPagination;
 
     public $showOnlyPublished = false;
+
+    #[Computed(/*persist: true*/)] 
+    // Computed property, caches the return value - those can be accessed in the view itself without passing it in the render()
+    // persist: true keeps everything cached until page is refreshed or the property is unset - that would need to break the cache on every interaction to work properly
+
+    public function articles()
+    {
+        $query = Article::query();
+
+        if ($this->showOnlyPublished) {
+            $query->where('published', 1);
+        }
+
+        return $query->paginate(10, pageName: 'articles-page'); // pageName is only needed if we intend to include multiple paginators - query parameter in the URL changes
+    }
     
     public function delete(Article $article)
     {
+        if ($this->articles->count() < 45) {
+            throw new \Exception('Cannot delete articles when there are less than 45 articles in the database.');
+        }
+
         $article->delete();
+        unset($this->articles); // break the cache
+        cache()->forget('published-count'); // clear the cache for the PublishedCount component
     }
 
     public function showAll()
@@ -30,16 +52,8 @@ class ArticleList extends AdminComponent
         $this->resetPage(pageName: 'articles-page');
     }
 
-    public function render()
-    {
-        $query = Article::query();
-
-        if ($this->showOnlyPublished) {
-            $query->where('published', 1);
-        }
-
-        return view('livewire.article-list', [
-            'articles' => $query->paginate(10, pageName: 'articles-page'),// pageName is only needed if we intend to include multiple paginators - query parameter in the URL changes
-        ]);
-    }
+    // public function render() // using computed property makes render() unnecessary in most cases
+    // {
+    //     return view('livewire.article-list');
+    // }
 }
