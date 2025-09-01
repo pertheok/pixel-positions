@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Article;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Session;
 use Livewire\Attributes\Title;
 use Livewire\WithPagination;
 
@@ -12,7 +13,10 @@ class ArticleList extends AdminComponent
 {
     use WithPagination;
 
+    #[Session(key: 'published')]
     public $showOnlyPublished = false;
+
+    // key property allows for reference in the code by the provided value
 
     #[Computed(/*persist: true*/)] 
     // Computed property, caches the return value - those can be accessed in the view itself without passing it in the render()
@@ -40,16 +44,10 @@ class ArticleList extends AdminComponent
         cache()->forget('published-count'); // clear the cache for the PublishedCount component
     }
 
-    public function showAll()
+    public function togglePublished($showOnlyPublished)
     {
-        $this->showOnlyPublished = false;
+        $this->showOnlyPublished = $showOnlyPublished;
         $this->resetPage(pageName: 'articles-page'); // resetPage() does not need a page name by default, only if we have multiple paginators
-    }
-
-    public function showPublished()
-    {
-        $this->showOnlyPublished = true;
-        $this->resetPage(pageName: 'articles-page');
     }
 
     // public function render() // using computed property makes render() unnecessary in most cases

@@ -9,7 +9,8 @@ use Livewire\Component;
 
 class Search extends Component
 {
-    // #[Url(as: 'q', except: '', history: true)] // outputs the property value in the url string if no options provided
+    #[Url(as: 'q', except: '')] 
+    // outputs the property value in the url string if no options provided
     // "except" property specifies the value that will void this functionality until it changes to something else - in this case if there is no searchText provided.
     // "as" property aliases the parameter name as something else
     // "history" property enables browser history for the URL changes
@@ -23,16 +24,16 @@ class Search extends Component
     }
 
     // Allows for the same functionality as #[Url] and for setting those dynamically
-    protected function queryString()
-    {
-        return [
-            'searchText' => [
-                'except' => '',
-                'as' => 'q',
-                'history' => true
-            ]
-        ];
-    }
+    // protected function queryString()
+    // {
+    //     return [
+    //         'searchText' => [
+    //             'except' => '',
+    //             'as' => 'q',
+    //             'history' => true
+    //         ]
+    //     ];
+    // }
 
     public function render()
     {
