@@ -15,6 +15,20 @@
             </x-forms.field>
         </div>
 
+        <div class="mb-3">
+            <div class="flex items-center">
+                <x-forms.input type="file" label="Photo" name="photo" wire:model="form.photo" />
+
+                <div class="w-1/2">
+                    @if ($form->photo)
+                        <img src="{{ Storage::url($form->photo->temporaryUrl()) }}">
+                    @elseif ($form->photo_path)
+                        <img src="{{ Storage::url($form->photo_path) }}">
+                    @endif
+                </div>
+            </div>
+        </div>
+
         <div class="mb-3 ">
             <span wire:dirty wire:target="form.published" class="text-amber-600">Below field was changed.</span>
             <x-forms.input type="checkbox" label="Published" name="published" wire:model.boolean="form.published" checked />
@@ -36,7 +50,15 @@
         </div>
 
         <div class="mb-3">
-            <x-forms.button wire:dirty.remove.attr="disabled" wire:dirty.class="hover:bg-indigo-900" disabled class="text-gray-200 p-2 rounded-sm disabled:opacity-75 disabled:bg-blue-300" type="submit">Save</x-forms.button>
+            <x-forms.button 
+                {{-- wire:dirty.remove.attr="disabled" // removed in later exercise
+                wire:dirty.class="hover:bg-indigo-900" 
+                disabled  --}}
+                class="text-gray-200 p-2 rounded-sm disabled:opacity-75 disabled:bg-blue-300" 
+                type="submit"
+            >
+                Save
+            </x-forms.button>
         </div>
     </x-forms.form>
 </div>

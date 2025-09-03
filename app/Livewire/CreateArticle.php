@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\ArticleForm;
+use Livewire\WithFileUploads;
 
 class CreateArticle extends AdminComponent
 {
+    use WithFileUploads;
     public ArticleForm $form;
     
     public function save()
