@@ -3,7 +3,14 @@
 
         <div class="mt-2 mb-4 flex justify-between">
             <div class="flex-1">
-                <x-forms.input name="searchText" label="" wire:model.live.debounce="searchText" placeholder="{{ $placeholder }}" />
+                <x-forms.input 
+                    name="searchText" 
+                    label="" 
+                    wire:model.live.debounce="searchText" 
+                    placeholder="{{ $placeholder }}" 
+                    wire:offline.attr="disabled"
+                    {{-- wire:offline.attr.remove="disabled" --}}
+                />
             </div>
         </div>
 

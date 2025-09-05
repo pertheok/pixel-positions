@@ -7,7 +7,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
-#[Lazy()]
+#[Lazy(isolate: false)] // Lazy components are isolated by default, this will bundle them with other components
 class PublishedCount extends Component
 {
     public $placeholderText = '';
