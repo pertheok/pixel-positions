@@ -19,11 +19,20 @@
             <div class="flex items-center">
                 <x-forms.input type="file" label="Photo" name="photo" wire:model="form.photo" />
 
-                <div class="w-1/2">
+                <div class="text-center">
                     @if ($form->photo)
-                        <img src="{{ Storage::url($form->photo->temporaryUrl()) }}">
+                        <img class="w-1/2 inline" src="{{ Storage::url($form->photo->temporaryUrl()) }}">
                     @elseif ($form->photo_path)
-                        <img src="{{ Storage::url($form->photo_path) }}">
+                        <img class="w-1/2 inline" src="{{ Storage::url($form->photo_path) }}">
+                        <div class="mt-2">
+                            <button
+                                type="button"
+                                class="text-gray-200 p-1 bg-blue-700 rounded-sm hover:bg-blue-900"
+                                wire:click="downloadPhoto"
+                            >
+                                Download
+                            </button>
+                        </div>
                     @endif
                 </div>
             </div>
