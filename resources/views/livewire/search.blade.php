@@ -15,15 +15,28 @@
         </div>
 
     </form>
-    @if (!empty($results) && count($results) > 0)
+    @if (!empty($searchText))
         <div
+            wire:transition.duration.1000ms 
+            {{-- wire:transition.in animation when the results are in, but not on out --}}
+            {{-- wire:transition.out opposite of the above --}}
+            {{-- wire:transition.opacity for just the opacity effect --}}
+            {{-- wire:transition.scale.origin.top.left for just the scale effect, directions optional --}}
             x-data
             @click.away="$dispatch('search:clear-results')"
         >
-            <livewire:search-results :results="$results" :show="!empty($searchText)" />
+            <livewire:search-results 
+                :results="$results" 
+                {{-- :show="!empty($searchText)"  --}}
+            />
         </div>
-    @else
-        <livewire:search-results :results="$results" :show="!empty($searchText)" />
+    {{-- @else
+        <div wire:transition>
+            <livewire:search-results 
+                :results="$results" 
+                :show="!empty($searchText)"
+            />
+        </div> --}}
     @endif
 </div>
 

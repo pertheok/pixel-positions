@@ -1,4 +1,6 @@
 <x-layout>
-    <livewire:search placeholder="Type something to search..." />
+    <div class="">
+        <livewire:search placeholder="Type something to search..." />
+    </div>
     {{ $slot }}
 </x-layout>
