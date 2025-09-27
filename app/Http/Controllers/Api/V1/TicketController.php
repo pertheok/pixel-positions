@@ -34,20 +34,13 @@ class TicketController extends ApiController
      */
     public function store(StoreTicketRequest $request)
     {
-        /**
-         * Below is a custom validation for those who don't want to use the Request validation. 
-         * Returns 200 to obscure the existence of the error from automated attacks analysing response codes.
-         */
-        // try {
-        //     $user = User::findOrFail($request->input('data.relationships.author.data.id'));
-        // } catch (ModelNotFoundException $e) {
-        //     return $this->ok('User not found', [
-        //         'error' => 'The specified author ID does not exist.',
-        //     ]);
-        // }
-        $this->isAble('store', null);
+        try {
+            $this->isAble('store', Ticket::class);
+            return new TicketResource(Ticket::create($request->mappedAttributes()));
+        } catch (AuthorizationException $e) {
+            return $this->error('This action is unauthorized.', 403);
+        }
 
-        return new TicketResource($request->mappedAttributes());
     }
 
     /**
