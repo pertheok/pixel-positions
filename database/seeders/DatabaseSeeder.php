@@ -27,5 +27,12 @@ class DatabaseSeeder extends Seeder
         // $this->call(JobSeeder::class);
         // $this->call(GreetingSeeder::class);
         // Article::factory(50)->create();
+
+        User::create([
+            'name' => 'The Manager',
+            'email' => 'manager@example.com',
+            'password' => bcrypt('password'),
+            'is_manager' => true,
+        ]);
     }
 }

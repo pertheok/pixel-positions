@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class TicketController extends ApiController
 {
     protected $policyClass = TicketPolicy::class;
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -45,6 +45,7 @@ class TicketController extends ApiController
         //         'error' => 'The specified author ID does not exist.',
         //     ]);
         // }
+        $this->isAble('store', null);
 
         return new TicketResource($request->mappedAttributes());
     }
@@ -93,6 +94,9 @@ class TicketController extends ApiController
     {
         try {
             $ticket = Ticket::findOrFail($ticket_id);
+
+            $this->isAble('replace', $ticket);
+
             $ticket->update($request->mappedAttributes());
 
             return new TicketResource($ticket);
@@ -109,6 +113,7 @@ class TicketController extends ApiController
     {
         try {
             $ticket = Ticket::findOrFail($ticket_id);
+            $this->isAble('delete', $ticket);
             $ticket->delete();
 
             return $this->ok('Ticket deleted successfully.');
