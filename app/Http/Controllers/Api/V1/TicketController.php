@@ -40,7 +40,6 @@ class TicketController extends ApiController
         } catch (AuthorizationException $e) {
             return $this->error('This action is unauthorized.', 403);
         }
-
     }
 
     /**
