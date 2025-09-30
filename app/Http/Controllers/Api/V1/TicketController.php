@@ -33,13 +33,12 @@ class TicketController extends ApiController
      * Store a newly created resource in storage.
      */
     public function store(StoreTicketRequest $request)
-    {
-        try {
-            $this->isAble('store', Ticket::class);
+    {  
+        if ($this->isAble('store', Ticket::class)) {
             return new TicketResource(Ticket::create($request->mappedAttributes()));
-        } catch (AuthorizationException $e) {
-            return $this->error('This action is unauthorized.', 403);
         }
+
+        return $this->error('This action is unauthorized.', 403);
     }
 
     /**
@@ -68,17 +67,16 @@ class TicketController extends ApiController
         try {
             $ticket = Ticket::findOrFail($ticket_id);
 
-            // policy
-            $this->isAble('update', $ticket);
+            if ($this->isAble('update', $ticket)) {
+                $ticket->update($request->mappedAttributes());
 
-            $ticket->update($request->mappedAttributes());
+                return new TicketResource($ticket);
+            }
 
-            return new TicketResource($ticket);
+            return $this->error('This action is unauthorized.', 403);
 
         } catch (ModelNotFoundException $e) {
             return $this->error('Ticket not found', 404);
-        } catch (AuthorizationException $e) {
-            return $this->error('This action is unauthorized.', 403);
         }
     }
 
@@ -87,11 +85,13 @@ class TicketController extends ApiController
         try {
             $ticket = Ticket::findOrFail($ticket_id);
 
-            $this->isAble('replace', $ticket);
+            if ($this->isAble('replace', $ticket)) {
+                $ticket->update($request->mappedAttributes());
 
-            $ticket->update($request->mappedAttributes());
+                return new TicketResource($ticket);
+            }
 
-            return new TicketResource($ticket);
+            return $this->error('This action is unauthorized.', 403);
 
         } catch (ModelNotFoundException $e) {
             return $this->error('Ticket not found', 404);
@@ -105,10 +105,15 @@ class TicketController extends ApiController
     {
         try {
             $ticket = Ticket::findOrFail($ticket_id);
-            $this->isAble('delete', $ticket);
-            $ticket->delete();
+            
+            if ($this->isAble('delete', $ticket)) {
+                $ticket->delete();
 
-            return $this->ok('Ticket deleted successfully.');
+                return $this->ok('Ticket deleted successfully.');
+            }
+
+            return $this->error('This action is unauthorized.', 403);
+            
         } catch (ModelNotFoundException $e) {
             return $this->error('Ticket not found', 404);
         }
