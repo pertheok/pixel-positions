@@ -9,8 +9,6 @@ use App\Http\Requests\Api\V1\UpdateUserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use App\Policies\V1\UserPolicy;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends ApiController
 {
@@ -36,8 +34,7 @@ class UserController extends ApiController
             return new UserResource(User::create($request->mappedAttributes()));
         } 
             
-        return $this->error('This action is unauthorized.', 403);
-
+        return $this->notAuthorised('This action is unauthorized.');
     }
 
     /**
@@ -55,60 +52,39 @@ class UserController extends ApiController
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, $user_id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        try {
-            $user = User::findOrFail($user_id);
+        if($this->isAble('update', $user)) {
+            $user->update($request->mappedAttributes());
 
-            if($this->isAble('update', $user)) {
-                $user->update($request->mappedAttributes());
-
-                return new UserResource($user);
-            }
-
-            return $this->error('This action is unauthorized.', 403);
-        
-        } catch (ModelNotFoundException $e) {
-            return $this->error('User not found', 404);
+            return new UserResource($user);
         }
+
+        return $this->notAuthorised('This action is unauthorized.');
     }
 
-    public function replace(ReplaceUserRequest $request, $user_id)
+    public function replace(ReplaceUserRequest $request, User $user)
     {
-        try {
-            $user = User::findOrFail($user_id);
+        if($this->isAble('replace', $user)) {
+            $user->update($request->mappedAttributes());
 
-            if($this->isAble('replace', $user)) {
-                $user->update($request->mappedAttributes());
+            return new UserResource($user);
+        }
 
-                return new UserResource($user);
-            }
-
-            return $this->error('This action is unauthorized.', 403);
-
-        } catch (ModelNotFoundException $e) {
-            return $this->error('User not found', 404);
-        }        
+        return $this->notAuthorised('This action is unauthorized.');    
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($user_id)
-    {
-        try {
-            $user = User::findOrFail($user_id);
-            
-            if ($this->isAble('delete', $user)) {
-                $user->delete();
+    public function destroy(User $user)
+    {   
+        if ($this->isAble('delete', $user)) {
+            $user->delete();
 
-                return $this->ok('User deleted successfully.');
-            }
-
-            return $this->error('This action is unauthorized.', 403);
-            
-        } catch (ModelNotFoundException $e) {
-            return $this->error('User not found', 404);
+            return $this->ok('User deleted successfully.');
         }
+
+        return $this->notAuthorised('This action is unauthorized.');
     }
 }
