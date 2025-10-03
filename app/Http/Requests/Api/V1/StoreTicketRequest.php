@@ -63,27 +63,27 @@ class StoreTicketRequest extends BaseTicketRequest
         $documentation = [
             'data.attributes.title' => [
                 'description' => "The ticket's title (method)",
-                'example' => 'No-example'
+                'example' => null
             ],
             'data.attributes.description' => [
                 'description' => "The ticket's description",
-                'example' => 'No-example',
+                'example' => null,
             ],
             'data.attributes.status' => [
                 'description' => "The ticket's status",
-                'example' => 'No-example',
+                'example' => null,
             ],
         ];
 
         if ($this->routeIs('tickets.store')) {
             $documentation['data.relationships.author.data.id'] = [
                 'description' => 'The author assigned to the ticket.',
-                'example' => 'No-example'
+                'example' => null
             ];
         } else {
             $documentation['author'] = [
                 'description' => 'The author assigned to the ticket.',
-                'example' => 'No-example'
+                'example' => null
             ];
         }
 
